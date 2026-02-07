@@ -1,0 +1,14 @@
+Textured Mesh should inherit from Indexed mesh , fix it -----[CLOSED]
+
+Add better error handling , using macros -----[CLOSED]
+
+Add Imgui control window -----[CLOSED]
+
+Move the Imgui context and opengl context to a single window -----[CLOSED]
+
+Improve FPS handling
+
+Fix the shader destructor error -----[CLOSED]
+
+Fix the seg fault in app.cpp caused by enabling multiviewport
+
