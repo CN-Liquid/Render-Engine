@@ -61,17 +61,7 @@ DEBUG_TARGET_GUI = $(BINDIR)/my_debug_gui_program
 
 .PHONY: all clean
 
-all: $(TARGET)
-
-$(TARGET): $(SRCS) | $(BINDIR)
-	$(CXX) $(SRCS) $(CXXFLAGS) $(LDFLAGS) -o $@
-
-debug: $(DEBUG_TARGET)
-
-$(DEBUG_TARGET): $(SRCS) | $(BINDIR)
-	$(CXX) $(SRCS) $(CXXFLAGS) $(DFLAGS) $(LDFLAGS) -o $@
-
-gui: $(DEBUG_TARGET_GUI)
+all: $(DEBUG_TARGET_GUI)
 
 $(DEBUG_TARGET_GUI): $(GUISRCS) | $(BINDIR)
 	$(CXX) $(GUISRCS) $(CXXFLAGS) $(DFLAGS) $(DGUIFLAGS) $(LDFLAGS) -o $@
