@@ -20,7 +20,7 @@ To build and run this engine, ensure you have a modern C++ compiler supporting `
 
 ```bash
 sudo apt-get update
-sudo apt-get install build-essential libglfw3-dev libassimp-dev libgl1-mesa-dev libxrandr-dev libxi-dev libxinerama-dev libxcursor-dev
+sudo apt-get install build-essential libglfw3-dev libglm.dev libassimp-dev libgl1-mesa-dev libxrandr-dev libxi-dev libxinerama-dev libxcursor-dev
 ```
 
 #### Linux (Arch Linux)
