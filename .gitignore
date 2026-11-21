@@ -1,3 +1,4 @@
 bin/
 .env
 gmon.out
+compile_flags.txt
