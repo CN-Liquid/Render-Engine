@@ -26,4 +26,6 @@ public:
     void loadModel(std::string directory);
 
     std::vector<TexturedMesh> &getMeshes();
+    // Temporary
+    std::vector<Texture > &getTextures();
 };
