@@ -21,5 +21,7 @@ public:
 
     void computeNormals();
 
+    Texture* get();
+
     void draw(Shader &shader);
 };

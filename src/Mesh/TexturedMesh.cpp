@@ -149,3 +149,7 @@ void TexturedMesh::linkTexture(Texture *texture)
         m_texture = texture;
     }
 }
+
+Texture* TexturedMesh::get(){
+    return m_texture;
+}
