@@ -5,10 +5,19 @@
 #include <assimp/material.h>
 #include <iostream>
 
+static std::string fixSlashes(std::string s) {
+  for (char &c : s)
+    if (c == '\\')
+      c = '/';
+  return s;
+}
+
 void Model::loadModel(std::string path) {
   m_path = path;
   Assimp::Importer import;
-  const aiScene *scene = import.ReadFile(path, aiProcess_Triangulate);
+  const aiScene *scene =
+      import.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals |
+                                aiProcess_JoinIdenticalVertices);
 
   m_textures.reserve(scene->mNumMaterials);
 
@@ -100,7 +109,7 @@ TexturedMesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
       aiString str;
       material->GetTexture(aiTextureType_DIFFUSE, 0, &str);
       std::string path = m_path.substr(0, m_path.find_last_of('/'));
-      std::string fullPath = path + "/" + "Wood_Tower_Col.jpg";
+      std::string fullPath = fixSlashes(path) + "/" + fixSlashes(str.C_Str());
 
       std::cout << "Texture Path = " << str.C_Str() << std::endl;
       Texture texture(fullPath);
