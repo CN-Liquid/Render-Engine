@@ -17,6 +17,9 @@ public:
     void bind(GLuint slot = 0) const;
     void unbind() const;
     void generate(const std::string &filePath);
+    void saveTextureAsPNG(std::string name);
     bool isValid();
     unsigned char *data();
+   Texture(Texture &&other) noexcept;
+    Texture& operator=(Texture &&other) noexcept;
 };

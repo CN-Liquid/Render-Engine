@@ -2,8 +2,10 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #include "Error.hpp"
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "stb_image_write.h"
 
-Texture::Texture(const std::string &filePath) : m_filePath(filePath), m_localBuffer(nullptr), width(0), height(0), BPP(0)
+Texture::Texture(const std::string &filePath) : m_filePath(filePath), m_localBuffer(nullptr), width(0), height(0), BPP(0),m_ID(0)
 {
     generate(filePath);
 }
@@ -108,4 +110,61 @@ bool Texture::isValid()
     {
         return true;
     }
+}
+
+void Texture::saveTextureAsPNG(std::string name){
+
+    if (m_localBuffer == nullptr)
+    {
+        std::cerr << "Unable to save texture as image"<< std::endl;
+        return;
+    }
+
+    stbi_write_png(name.c_str(),width,height,BPP,m_localBuffer,BPP*width);
+
+}
+Texture::Texture(Texture &&other) noexcept
+    : m_filePath(std::move(other.m_filePath)),
+      m_ID(other.m_ID),
+      m_localBuffer(other.m_localBuffer),
+      width(other.width),
+      height(other.height),
+      BPP(other.BPP)
+{
+    other.m_ID = 0;
+    other.m_localBuffer = nullptr;
+    other.width = 0;
+    other.height = 0;
+    other.BPP = 0;
+}
+
+Texture &Texture::operator=(Texture &&other) noexcept
+{
+    if (this != &other)
+    {
+        if (m_ID != 0)
+        {
+            GLCALL(glDeleteTextures(1, &m_ID));
+            m_ID = 0;
+        }
+        if (m_localBuffer)
+        {
+            stbi_image_free(m_localBuffer);
+            m_localBuffer = nullptr;
+        }
+
+        m_filePath = std::move(other.m_filePath);
+        m_ID = other.m_ID;
+        m_localBuffer = other.m_localBuffer;
+        width = other.width;
+        height = other.height;
+        BPP = other.BPP;
+
+        other.m_ID = 0;
+        other.m_localBuffer = nullptr;
+        other.width = 0;
+        other.height = 0;
+        other.BPP = 0;
+    }
+    return *this;
 }
