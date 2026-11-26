@@ -52,7 +52,6 @@ GUISRCS:= $(SRCDIR)/glad.c \
 	   $(SRCDIR)/App.cpp\
 	   $(SRCDIR)/MyApp.cpp\
 	   $(SRCDIR)/Mesh/Terrain.cpp\
-	   $(SRCDIR)/Loaders/ObjLoader.cpp\
 	   $(SRCDIR)/GUIDebug.cpp
 
 TARGET = $(BINDIR)/my_program
