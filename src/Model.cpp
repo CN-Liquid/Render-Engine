@@ -21,6 +21,11 @@ void Model::loadModel(std::string path) {
       import.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals |
                                 aiProcess_JoinIdenticalVertices);
 
+  if(scene == nullptr){
+      std::cout << "ERROR::ASSIMP::" << import.GetErrorString() << std::endl;
+      return;
+  }
+
   m_textures.reserve(scene->mNumMaterials);
 
   if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE ||
