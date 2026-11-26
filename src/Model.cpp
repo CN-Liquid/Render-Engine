@@ -134,7 +134,7 @@ void Model::draw(Shader &shader) {
   }
 }
 
-void Model::updateModel(glm::vec3 position , glm::vec3 scale , glm::float32 rotation , glm::vec3 axis){
+void Model::updateModel(){
     for(int i=0;i<m_meshes.size();i++)
     {
         m_meshes.at(i).position = position;

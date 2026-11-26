@@ -24,9 +24,13 @@ private:
                                              std::string typeName);
 
 public:
+    glm::vec3 position = glm::vec3(0.0f);
+    glm::vec3 scale = glm::vec3(1.0f);
+    glm::vec3 axis = glm::vec3(0.0f, 0.0f, 1.0f);
+    float rotation = 0.0f;
     void draw(Shader &shader);
     void loadModel(std::string directory);
-    void updateModel(glm::vec3 position=glm::vec3(0.0f) , glm::vec3 scale=glm::vec3(1.0f)  , glm::float32 rotation=0.0f,glm::vec3 axis=glm::vec3(0.0f,1.0f,0.0f ));
+    void updateModel();
 
     std::vector<TexturedMesh> &getMeshes();
     // Temporary
