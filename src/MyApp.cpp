@@ -16,7 +16,7 @@ MyApp::MyApp()
                     "Shader/lightFragmentShader.frag"),
       m_brickWall("res/dirt.jpg"), m_heightMap("res/snowdon.png"),
       m_palmTree("res/Dragon_ground_color.jpg"),
-      m_light(cubeIndexedVertices, cubeIndexedIndices), m_terrain(5000, 500),selectedModel(0) {
+      m_light(cubeIndexedVertices, cubeIndexedIndices), m_terrain(5000, 500),selectedModel(0),m_buffer("") {
 
   m_light.computeNormals();
   m_light.uploadGPU();
