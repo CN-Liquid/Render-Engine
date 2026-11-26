@@ -1,4 +1,5 @@
 #include "Terrain.hpp"
+#include <iostream>
 Terrain::Terrain(GLuint length, GLuint chunks) : m_length(length), m_chunks(chunks)
 {
     generate(length, chunks);

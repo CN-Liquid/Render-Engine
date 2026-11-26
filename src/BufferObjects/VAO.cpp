@@ -20,7 +20,7 @@ void VAO::linkVBO(VBO &vbo, GLuint layout , GLuint size  , GLenum type, GLboolea
   GLCALL(glEnableVertexAttribArray(layout));
 
   vbo.unbind();
-  
+
   unbind();
 }
 
@@ -50,9 +50,9 @@ void VAO::linkModels(VBO &vbo, GLuint startingLayout) const
   {
 
     GLCALL(glVertexAttribPointer(startingLayout + i, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void *)(sizeof(glm::vec4) * i)));
-    
+
     GLCALL(glEnableVertexAttribArray(startingLayout + i));
-    
+
     GLCALL(glVertexAttribDivisor(startingLayout + i, 1));
   }
 

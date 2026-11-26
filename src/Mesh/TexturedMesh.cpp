@@ -1,6 +1,8 @@
 #include "TexturedMesh.hpp"
+#include <iostream>
 #include <chrono>
 #include <unordered_map>
+#include "Error.hpp"
 TexturedMesh::TexturedMesh(std::vector<GLfloat> vertices, std::vector<GLuint> indices) : IndexedMesh(vertices, indices)
 {
 }

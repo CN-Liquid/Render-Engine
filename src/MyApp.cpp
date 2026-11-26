@@ -1,10 +1,11 @@
 #include "MyApp.hpp"
-#include "Model.hpp"
-#include "ObjLoader.hpp"
 #include "Terrain.hpp"
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
+#include "Shapes.hpp"
+#include "Error.hpp"
+
 float yaw = -90.0f, pitch = 0.0f;
 float lastX = 400, lastY = 400;
 bool firstMouse = true;

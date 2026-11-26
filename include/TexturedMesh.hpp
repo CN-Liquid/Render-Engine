@@ -1,7 +1,6 @@
 #pragma once
 #include "IndexedMesh.hpp"
 #include "Texture.hpp"
-#include "VBO.hpp"
 
 class TexturedMesh : public IndexedMesh
 {

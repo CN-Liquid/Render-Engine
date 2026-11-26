@@ -1,21 +1,14 @@
 #pragma once
-#include "Window.hpp"
 #include "Camera.hpp"
-#include "VAO.hpp"
 #include "VBO.hpp"
 #include "Shader.hpp"
-#include "imgui.h"
-#include "Mesh.hpp"
-#include "Error.hpp"
 #include "IndexedMesh.hpp"
 #include "Terrain.hpp"
 #include "Texture.hpp"
 #include "Model.hpp"
 #include "TexturedMesh.hpp"
-#include "Shapes.hpp"
 #include "ObjLoader.hpp"
 #include <GLFW/glfw3.h>
-#include <iostream>
 #include "App.hpp"
 class MyApp : public App
 {

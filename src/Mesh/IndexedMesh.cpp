@@ -2,6 +2,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <chrono>
+#include "Error.hpp"
 static void normalize(float &x, float &y, float &z)
 {
     float length = std::sqrt(x * x + y * y + z * z);
