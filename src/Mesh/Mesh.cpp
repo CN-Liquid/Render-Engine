@@ -1,6 +1,7 @@
 #include "Mesh.hpp"
 #include <iostream>
 #include <cmath>
+#include "Error.hpp"
 void normalize(float &x, float &y, float &z)
 {
     float length = std::sqrt(x * x + y * y + z * z);
