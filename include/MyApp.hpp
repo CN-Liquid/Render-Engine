@@ -31,9 +31,9 @@ private:
     Texture m_heightMap;
     Texture m_palmTree;
 
-    Model model;
+    std::vector<Model> m_models;
 
-    GLuint selectedMesh;
+    GLuint selectedModel;
 
     ObjLoader m_loader;
 

@@ -16,14 +16,8 @@ MyApp::MyApp()
                     "Shader/lightFragmentShader.frag"),
       m_brickWall("res/dirt.jpg"), m_heightMap("res/snowdon.png"),
       m_palmTree("res/Dragon_ground_color.jpg"),
-      m_light(cubeIndexedVertices, cubeIndexedIndices), m_terrain(5000, 500) {
-  model.loadModel("res/rp_nathan/rp_nathan_animated_003_walking.fbx");
-  for (int i = 0; i < model.getMeshes().size(); i++) {
-    model.getMeshes().at(i).uploadGPU();
-  }
+      m_light(cubeIndexedVertices, cubeIndexedIndices), m_terrain(5000, 500),selectedModel(0) {
 
-  std::cout << "Model size = " << model.getMeshes().back().getVertices().size()
-            << std::endl;
   m_light.computeNormals();
   m_light.uploadGPU();
   m_light.position = glm::vec3(1000.0f);
@@ -63,7 +57,7 @@ MyApp::MyApp()
   GLCALL(glCullFace(GL_BACK));
 }
 
-void MyApp::loadMesh(std::vector<GLfloat> vertices,
+/* void MyApp::loadMesh(std::vector<GLfloat> vertices,
                      std::vector<GLfloat> texCoords,
                      std::vector<GLfloat> normals,
                      std::vector<GLuint> indices) {
@@ -87,7 +81,7 @@ void MyApp::loadMesh(std::vector<GLfloat> vertices,
   m_meshes.back().uploadGPU();
   selectedMesh = m_meshes.size() - 1;
 }
-
+ */
 MyApp::~MyApp() {
   ImGui_ImplOpenGL3_Shutdown();
   ImGui_ImplGlfw_Shutdown();
