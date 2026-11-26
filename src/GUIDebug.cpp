@@ -1,4 +1,7 @@
 #include "MyApp.hpp"
+#include "VBO.hpp"
+#include "imgui.h"
+#include <glm/ext/vector_float3.hpp>
 float globalAmbient = 0.8f;
 
 void MyApp::update() {
@@ -59,43 +62,52 @@ void MyApp::update() {
   static float y = 0.0f;
   static float z = 0.0f;
 
-  if (m_meshes.size() != 0) {
-    TexturedMesh &selected = m_meshes.at(selectedMesh);
+  if (m_models.size() != 0) {
+    Model &selected = m_models.at(selectedModel);
   }
   if (ImGui::Button("Add object")) {
-    m_loader.loadMesh(std::string(m_buffer));
-    loadMesh(m_loader.vertices, m_loader.texCoords, m_loader.normals,
-             m_loader.indices);
+    Model model;
+    model.loadModel(m_buffer);
+    for(int i=0;i<model.getMeshes().size();i++)
+    {
+        model.getMeshes().at(i).uploadGPU();
+    }
+    m_models.push_back(std::move(model));
   }
   ImGui::PushItemWidth(50);
   if (ImGui::DragFloat("X", &x, 0.1f)) {
-    if (m_meshes.size() != 0) {
-      m_meshes.back().position.x = x;
-      m_meshes.back().updateModel();
+    if (m_models.size() != 0) {
+        m_models.at(selectedModel).position = glm::vec3(x,y,z);
+      m_models.at(selectedModel).updateModel();
     }
   }
   ImGui::SameLine(0.0f, 20.0f);
   if (ImGui::DragFloat("Y", &y, 0.1f)) {
-    if (m_meshes.size() != 0) {
-
-      m_meshes.back().position.y = y;
-      m_meshes.back().updateModel();
+    if (m_models.size() != 0) {
+m_models.at(selectedModel).position = glm::vec3(x,y,z);
+m_models.at(selectedModel).updateModel();
     }
   }
   ImGui::SameLine(0.0f, 20.0f);
   if (ImGui::DragFloat("Z", &z, 0.1f)) {
-    if (m_meshes.size() != 0) {
-
-      m_meshes.back().position.z = z;
-      m_meshes.back().updateModel();
+    if (m_models.size() != 0) {
+        m_models.at(selectedModel).position = glm::vec3(x,y,z);
+ m_models.at(selectedModel).updateModel();
     }
   }
 
-  if (ImGui::BeginListBox("Objects")) {
-    for (int i = 0; i < m_meshes.size(); i++) {
-      bool is_selected = (selectedMesh == i);
-      if (ImGui::Selectable(std::to_string(i).c_str(), is_selected))
-        selectedMesh = i;
+
+
+   if (ImGui::BeginListBox("Objects")) {
+    for (int i = 0; i < m_models.size(); i++) {
+      bool is_selected = (selectedModel == i);
+      if (ImGui::Selectable(std::to_string(i).c_str(), is_selected)){
+        selectedModel = i;
+        x = m_models.at(selectedModel).position.x;
+        y = m_models.at(selectedModel).position.y;
+        z = m_models.at(selectedModel).position.z;
+
+      }
 
       if (is_selected)
         ImGui::SetItemDefaultFocus();
@@ -114,11 +126,11 @@ void MyApp::update() {
   m_shader.setUniformVec3("viewPosition", m_camera.getPosition());
 
   m_terrain.draw(m_shader);
-  for (int i = 0; i < m_meshes.size(); i++) {
-    m_meshes.at(i).draw(m_shader);
-  }
 
-  model.draw(m_shader);
+  for(int i=0 ; i<m_models.size();i++)
+  {
+      m_models.at(i).draw(m_shader);
+  }
 
   pollKeyboard(m_deltaTime);
 
