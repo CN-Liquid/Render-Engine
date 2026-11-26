@@ -3,6 +3,8 @@
 #include "TexturedMesh.hpp"
 #include <assimp/defs.h>
 #include <assimp/material.h>
+#include <glm/ext/vector_float3.hpp>
+#include <glm/fwd.hpp>
 #include <iostream>
 
 static std::string fixSlashes(std::string s) {
@@ -130,4 +132,16 @@ void Model::draw(Shader &shader) {
 
     m_meshes.at(i).draw(shader);
   }
+}
+
+void Model::updateModel(glm::vec3 position , glm::vec3 scale , glm::float32 rotation , glm::vec3 axis){
+    for(int i=0;i<m_meshes.size();i++)
+    {
+        m_meshes.at(i).position = position;
+        m_meshes.at(i).scale = scale;
+        m_meshes.at(i).rotation=rotation;
+        m_meshes.at(i).axis = axis;
+
+        m_meshes.at(i).updateModel();
+    }
 }

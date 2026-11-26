@@ -1,4 +1,6 @@
 #pragma once
+#include <glm/ext/vector_float3.hpp>
+#include <glm/fwd.hpp>
 #include <iostream>
 #include <vector>
 #include <assimp/Importer.hpp>
@@ -24,6 +26,7 @@ private:
 public:
     void draw(Shader &shader);
     void loadModel(std::string directory);
+    void updateModel(glm::vec3 position=glm::vec3(0.0f) , glm::vec3 scale=glm::vec3(1.0f)  , glm::float32 rotation=0.0f,glm::vec3 axis=glm::vec3(0.0f,1.0f,0.0f ));
 
     std::vector<TexturedMesh> &getMeshes();
     // Temporary
